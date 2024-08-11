@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #F1F4FD
+}
+
+.container {
+    max-width: 1200px;
+    width: 95%;
+    /* used 95% to avoid the overflow on smaller screens, as it gives some space */
+}
+
+.slider-wrapper .image-list::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-wrapper .image-list {
+    display: flex;
+    gap: 18px;
+    font-size: 0;
+    overflow-x: auto;
+    /* a horizontal scrollbar would appear,if the total width of the images is exceeding the width of the parent container */
+    grid-template-columns: repeat(10, 1fr);
+    scrollbar-width: none;
+    margin-bottom: 30px;
+}
+
+.slider-wrapper .image-list .image-item {
+    width: 325px;
+    height: 400px;
+    object-fit: cover;
+    /* it is a CSS property which specifies how an image should resize to fit it's container */
+}
+
+.container .slider-scrollbar {
+    height: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;/* this alligned the gray line to the center of the .slider-scrollbar container */
+}
+
+.slider-scrollbar .scrollbar-track {
+    position: relative;/* making it's position relative can help in moving around it's child elements relative to it's position */
+    height: 2px;
+    width: 100%;
+    background-color: #CCC;
+    border-radius: 4px;
+}
+
+.slider-scrollbar .scrollbar-thumb {
+    position: absolute;
+    /* position:absolute removes .scrollbar-thumb from the normal document flow and is positioned relative to it's nearest positioned ancestor, it also means that it won't affect the position of other elements around it, and other elements won't affect it either */
+    height: 100%;
+    width: 50%;
+    background: #000;
+    border-radius: inherit;
+    /* by inherit it means that the border-radius would be same as it's parent element which in this case .scrollbar-track=4px */
+cursor:grab;
+}
+.slider-scrollbar .scrollbar-thumb::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right: 0;
+    top:-10px;
+    bottom:-5px;
+}
+.slider-scrollbar:hover .scrollbar-track{/* when you hover over the scrollbar, scrollbar track height doubles */
+height:4px;
+}
+.slider-scrollbar .scrollbar-thumb:active{
+cursor:grabbing;/* changes the cursor to a grabbing hand, indicating that the thumb is being dragged */
+height:8px;
+top:-2px;    /* moves the thumb up by 2px  */
+}
